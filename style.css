@@ -317,3 +317,36 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   .nav-links{ gap: 12px; font-size: 12px; }
   .collect h2{ font-size: 24px; }
 }
+
+/* ARCHIVE — text only */
+.archive-text {
+  background: transparent;
+}
+
+.archive-list {
+  max-width: 680px;
+  margin: 32px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.archive-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  font-size: 16px;
+}
+
+.archive-index {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  color: #1A27D9;
+  min-width: 24px;
+}
+
+.archive-item p {
+  margin: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
