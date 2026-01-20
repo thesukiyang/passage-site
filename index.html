@@ -1,167 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PASSAGE — Jewelry for what comes after.</title>
+  <meta name="description" content="PASSAGE — jewelry for what comes after. Designed in New York City." />
 
-  <title>PASSAGE — jewelry for what comes after.</title>
-  <meta name="description" content="PASSAGE — jewelry for what comes after. A quiet archive of decisions, vows, and turning points. NYC." />
-
-  <!-- Open Graph (ads + link previews) -->
-  <meta property="og:title" content="PASSAGE — jewelry for what comes after." />
-  <meta property="og:description" content="A quiet archive of decisions, vows, and turning points. NYC." />
-  <meta property="og:type" content="website" />
-  <!-- TODO: replace with real URL once domain is connected -->
-  <meta property="og:url" content="https://passage.nyc" />
-  <!-- TODO: add an image later (recommended 1200x630) -->
-  <meta property="og:image" content="https://passage.nyc/assets/og.jpg" />
-
-  <meta name="theme-color" content="#F3F0EA" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- (Optional) Analytics / Pixel placeholders -->
-  <!--
-  <script>/* Meta Pixel here */</script>
-  <script>/* Google Analytics / Ads tag here */</script>
-  -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header class="nav">
-    <a class="brand" href="#top" aria-label="PASSAGE home">
-      <img src="assets/logo.png" alt="Passage" class="brand-logo" />
-    </a>
 
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#archive">Archive</a>
-      <a href="#collect">Join</a>
-    </nav>
-  </header>
+<header class="nav">
+  <div class="nav-brand">PASSAGE</div>
+  <nav class="nav-links">
+    <a href="#archive">Archive</a>
+    <a href="#collect" class="nav-cta">Request access</a>
+  </nav>
+</header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-mark">
-          <img src="assets/logo.png" alt="Passage" class="hero-logo" />
-          <div class="since">since 2026</div>
-        </div>
+<main>
 
-        <h1 class="sr-only">PASSAGE</h1>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker">New York City · since 2026</div>
+    <h1 class="hero-title">Passage</h1>
+    <p class="hero-tagline">Jewelry for what comes after.</p>
+    <p class="hero-sub">
+      An archive of decisions, thresholds, and quiet commitments.
+    </p>
 
-        <p class="hero-slogan">Jewelry for what comes after.</p>
-        <p class="hero-sub">
-          A quiet archive of decisions, vows, and turning points — New York City.
-        </p>
+    <div class="hero-actions">
+      <a href="#collect" class="btn">Request access</a>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-cta">
-          <a class="btn" href="#collect">Request access</a>
-          <a class="btn ghost" href="#archive">View the archive</a>
-        </div>
+<!-- ARCHIVE -->
+<section id="archive" class="section archive-text">
+  <div class="section-head">
+    <h2>Archive</h2>
+    <p>Not jewelry. A record.</p>
+  </div>
 
-        <!-- Optional hero image block (leave commented if you don't have hero.jpg yet) -->
-        <!--
-        <div class="hero-image">
-          <img src="assets/hero.jpg" alt="Passage hero visual" loading="lazy" />
-        </div>
-        -->
-      </div>
-    </section>
+  <div class="archive-list">
+    <div class="archive-item">
+      <span class="archive-index">I</span>
+      <p>I stopped explaining myself.</p>
+    </div>
 
-    <!-- ARCHIVE -->
-    <section id="archive" class="section">
-      <div class="section-head">
-        <h2>Archive</h2>
-        <p>
-          Not jewelry. A record.
-        </p>
-      </div>
+    <div class="archive-item">
+      <span class="archive-index">II</span>
+      <p>A decision that didn’t need witnesses.</p>
+    </div>
 
-      <div class="grid">
-        <article class="card">
-          <img src="assets/piece-1.jpg" alt="Passage piece 1" loading="lazy" />
-          <p class="caption">I wore this when I stopped explaining myself.</p>
-          <button class="save" type="button" data-save="1" aria-label="Save piece 1">Save</button>
-        </article>
+    <div class="archive-item">
+      <span class="archive-index">III</span>
+      <p>What remained after the noise.</p>
+    </div>
+  </div>
+</section>
 
-        <article class="card">
-          <img src="assets/piece-2.jpg" alt="Passage piece 2" loading="lazy" />
-          <p class="caption">A vow, not a trend.</p>
-          <button class="save" type="button" data-save="2" aria-label="Save piece 2">Save</button>
-        </article>
+<!-- EMAIL -->
+<section id="collect" class="section collect">
+  <div class="collect-inner">
+    <h2>Join the Archive</h2>
+    <p class="collect-sub">
+      Private releases. No drops. No pressure.
+    </p>
 
-        <article class="card">
-          <img src="assets/piece-3.jpg" alt="Passage piece 3" loading="lazy" />
-          <p class="caption">This marks what came after.</p>
-          <button class="save" type="button" data-save="3" aria-label="Save piece 3">Save</button>
-        </article>
-      </div>
+    <form class="form">
+      <input type="email" placeholder="Email address" required />
+      <button type="submit">Request access</button>
+    </form>
 
-      <div class="note">
-        Tip: “Save” keeps an on-device list (no login). The real conversion is below.
-      </div>
-    </section>
+    <p class="fineprint">
+      We only write when something becomes permanent.
+    </p>
+  </div>
+</section>
 
-    <!-- COLLECT EMAIL -->
-    <section id="collect" class="section collect">
-      <div class="collect-inner">
-        <h2>Join the Archive</h2>
-        <p class="collect-sub">
-          Private drops. Early access. Quiet updates.
-        </p>
+<footer class="footer">
+  <div class="footer-inner">
+    <span>PASSAGE — NYC</span>
+    <span>© 2026</span>
+  </div>
+</footer>
 
-        <!-- EMAIL FORM (simple first version)
-             Option A (today): use Formspree (recommended) — replace action URL once you create it.
-             Option B (later): embed ConvertKit / Beehiiv form here.
-        -->
-        <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input name="email" type="email" placeholder="Email" required autocomplete="email" />
-          <button type="submit">Request access</button>
-        </form>
-
-        <div class="fineprint">
-          No spam. We only email when a new passage is released.
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div>PASSAGE — NYC</div>
-        <div class="footer-links">
-          <a href="mailto:hello@passage.nyc">hello@passage.nyc</a>
-          <span class="dot">•</span>
-          <a href="#collect">Join</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Tiny “Save” interaction: on-device only (ads-friendly, no backend) -->
-  <script>
-    (function () {
-      const key = "passage_saved";
-      const saved = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
-
-      function render(btn) {
-        const id = btn.getAttribute("data-save");
-        const isSaved = saved.has(id);
-        btn.textContent = isSaved ? "Saved" : "Save";
-        btn.classList.toggle("saved", isSaved);
-      }
-
-      document.querySelectorAll("button.save").forEach((btn) => {
-        render(btn);
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-save");
-          if (saved.has(id)) saved.delete(id);
-          else saved.add(id);
-          localStorage.setItem(key, JSON.stringify(Array.from(saved)));
-          render(btn);
-        });
-      });
-    })();
-  </script>
+</main>
 </body>
 </html>
