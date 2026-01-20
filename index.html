@@ -1,242 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PASSAGE — Jewelry for what comes after.</title>
-  <meta name="description" content="PASSAGE — jewelry for what comes after. NYC. Early access by request." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passage — Jewelry for what comes after.</title>
+  <meta name="description" content="Passage — jewelry for what comes after. Released quietly. Kept permanently." />
 
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Fonts (free, luxury-friendly) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- NAV -->
   <header class="nav">
-    <a class="nav-brand" href="#top" aria-label="PASSAGE home">
-      <span class="wordmark">PASSAGE</span>
-    </a>
-
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#archive">Archive</a>
-      <a href="#stories">Stories</a>
-      <a href="#access" class="nav-cta">Request access</a>
-    </nav>
+    <a class="brand" href="#top" aria-label="Home">Passage</a>
+    <a class="nav-cta" href="#access">Early access</a>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-        <div class="kicker">New York City · since 2026</div>
+        <div class="chip">NYC</div>
+        <h1>Jewelry for what comes after.</h1>
+        <p class="one">Released quietly. Kept permanently.</p>
 
-        <h1 class="hero-title">Passage</h1>
-        <p class="hero-tagline">Jewelry for what comes after.</p>
+        <form class="email" id="emailForm">
+          <input name="email" type="email" placeholder="Email address" required autocomplete="email" />
+          <button type="submit">Request access</button>
+        </form>
 
-        <p class="hero-sub">
-          An invitation-only archive of decisions, thresholds, and quiet commitments.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn" href="#access">Request early access</a>
-          <a class="btn ghost" href="#archive">View the archive</a>
-        </div>
-
-        <div class="hero-fine">
-          <span class="dot"></span>
-          <span>We don’t announce everything. We release quietly.</span>
-        </div>
+        <p class="fine">No spam. No discounts.</p>
       </div>
     </section>
 
-    <!-- ARCHIVE (no images required; images auto-fill if you add them) -->
-    <section id="archive" class="section">
-      <div class="section-head">
-        <h2>Archive</h2>
-        <p>Not jewelry. A record.</p>
-      </div>
+    <!-- TEASE -->
+    <section class="tease" aria-label="Archive">
+      <div class="divider"></div>
 
-      <div class="archive-grid">
-        <article class="card" data-piece="001">
-          <div class="card-media">
-            <img src="assets/piece-1.jpg" alt="Passage 001" loading="lazy"
-              onerror="this.remove(); this.parentElement.classList.add('placeholder');" />
-            <div class="placeholder-fill"></div>
-            <span class="piece-tag">001</span>
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <span class="num">001</span>
+            <button class="save" type="button" data-save="001">Save</button>
           </div>
-          <div class="card-body">
-            <div class="card-title">The first decision</div>
-            <div class="card-caption">I stopped explaining myself.</div>
-
-            <div class="card-actions">
-              <button class="save" type="button" data-save="001">Save</button>
-              <button class="peek" type="button" data-peek="001">Peek</button>
-            </div>
-          </div>
+          <div class="line">I stopped explaining myself.</div>
         </article>
 
-        <article class="card" data-piece="002">
-          <div class="card-media">
-            <img src="assets/piece-2.jpg" alt="Passage 002" loading="lazy"
-              onerror="this.remove(); this.parentElement.classList.add('placeholder');" />
-            <div class="placeholder-fill"></div>
-            <span class="piece-tag">002</span>
+        <article class="card">
+          <div class="card-top">
+            <span class="num">002</span>
+            <button class="save" type="button" data-save="002">Save</button>
           </div>
-          <div class="card-body">
-            <div class="card-title">A vow, not a trend</div>
-            <div class="card-caption">Quietly irreversible.</div>
-
-            <div class="card-actions">
-              <button class="save" type="button" data-save="002">Save</button>
-              <button class="peek" type="button" data-peek="002">Peek</button>
-            </div>
-          </div>
+          <div class="line">A vow, not a trend.</div>
         </article>
 
-        <article class="card" data-piece="003">
-          <div class="card-media">
-            <img src="assets/piece-3.jpg" alt="Passage 003" loading="lazy"
-              onerror="this.remove(); this.parentElement.classList.add('placeholder');" />
-            <div class="placeholder-fill"></div>
-            <span class="piece-tag">003</span>
+        <article class="card">
+          <div class="card-top">
+            <span class="num">003</span>
+            <button class="save" type="button" data-save="003">Save</button>
           </div>
-          <div class="card-body">
-            <div class="card-title">What came after</div>
-            <div class="card-caption">A mark you don’t take off.</div>
-
-            <div class="card-actions">
-              <button class="save" type="button" data-save="003">Save</button>
-              <button class="peek" type="button" data-peek="003">Peek</button>
-            </div>
-          </div>
+          <div class="line">What remained after the noise.</div>
         </article>
       </div>
 
-      <div class="section-note">
-        Tip: “Save” keeps your private list on this device. Early access unlocks the full archive.
+      <div class="hint">
+        Saved stays private on this device.
       </div>
     </section>
 
-    <!-- STORIES -->
-    <section id="stories" class="section stories">
-      <div class="section-head">
-        <h2>Stories</h2>
-        <p>Why Passage exists.</p>
-      </div>
-
-      <div class="stories-list">
-        <article class="story">
-          <h3>What Passage Is</h3>
-          <p>
-            PASSAGE is not built around trends, seasons, or moments.
-            It is built around what remains after them.
-          </p>
-          <p>
-            Each piece marks a threshold — a decision made, a vow taken,
-            or a version of the self that no longer negotiates.
-          </p>
-          <p>
-            We don’t believe jewelry is meant to decorate a moment.
-            It is meant to record one.
-          </p>
-        </article>
-
-        <article class="story">
-          <h3>Why We Don’t Show Everything</h3>
-          <p>
-            Not everything should be visible at once.
-            Some things become meaningful only when encountered at the right time.
-          </p>
-          <p>
-            PASSAGE is released quietly — to those who are paying attention,
-            not to those who are scrolling.
-          </p>
-        </article>
-
-        <article class="story">
-          <h3>On Permanence</h3>
-          <p>
-            A passage is irreversible.
-            Once crossed, you do not return to who you were before.
-          </p>
-          <p>
-            Neither should the objects that mark it.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- EARLY ACCESS -->
-    <section id="access" class="section access">
+    <!-- ACCESS (secondary capture, optional but helps) -->
+    <section id="access" class="access">
       <div class="access-inner">
-        <div class="access-left">
-          <h2>Early Access</h2>
-          <p class="access-sub">
-            Some passages are not announced. They are entered.
-          </p>
+        <h2>Early access</h2>
+        <p class="one">Private previews. Quiet releases.</p>
 
-          <ul class="bullets">
-            <li>Private previews before public release</li>
-            <li>Reserved purchasing window (when commerce opens)</li>
-            <li>Quiet updates — only when something becomes permanent</li>
-          </ul>
-        </div>
+        <form class="email compact" id="emailForm2">
+          <input name="email" type="email" placeholder="Email address" required autocomplete="email" />
+          <button type="submit">Request</button>
+        </form>
 
-        <div class="access-right">
-          <!-- CONNECT LATER: Replace action URL with Formspree/ConvertKit -->
-          <form class="form" id="earlyAccessForm">
-            <label class="label">Request early access</label>
-            <input name="email" type="email" placeholder="Email address" required autocomplete="email" />
-            <button type="submit">Request access</button>
-            <p class="fineprint">
-              No spam. No discounts. Only releases.
-            </p>
-          </form>
-        </div>
+        <p class="fine">You’ll only hear from us when something is released.</p>
       </div>
     </section>
 
     <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <span class="wordmark small">PASSAGE</span>
-          <span class="sep">·</span>
-          <span>NYC</span>
-        </div>
-        <div class="footer-right">
-          <a href="mailto:hello@passage.nyc">hello@passage.nyc</a>
-        </div>
-      </div>
+      <a href="mailto:hello@passage.nyc">hello@passage.nyc</a>
+      <span>© 2026</span>
     </footer>
-
-    <!-- MODAL (Peek tease) -->
-    <div class="modal" id="peekModal" aria-hidden="true">
-      <div class="modal-backdrop" data-close="1"></div>
-      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Peek">
-        <div class="modal-top">
-          <div class="modal-title">Peek</div>
-          <button class="modal-close" type="button" data-close="1" aria-label="Close">✕</button>
-        </div>
-        <div class="modal-body" id="modalBody">
-          <!-- injected -->
-        </div>
-        <div class="modal-bottom">
-          <a class="btn" href="#access">Request early access</a>
-          <button class="btn ghost" type="button" data-close="1">Not now</button>
-        </div>
-      </div>
-    </div>
   </main>
 
   <script>
-    // SAVE (local, on-device)
+    // SAVE (localStorage)
     (function () {
-      const key = "passage_saved";
-      const saved = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
+      const KEY = "passage_saved";
+      const saved = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
 
       function render(btn) {
         const id = btn.getAttribute("data-save");
@@ -251,87 +112,30 @@
           const id = btn.getAttribute("data-save");
           if (saved.has(id)) saved.delete(id);
           else saved.add(id);
-          localStorage.setItem(key, JSON.stringify(Array.from(saved)));
+          localStorage.setItem(KEY, JSON.stringify(Array.from(saved)));
           render(btn);
         });
       });
     })();
 
-    // PEEK (tease modal)
-    (function () {
-      const modal = document.getElementById("peekModal");
-      const body = document.getElementById("modalBody");
-
-      const copy = {
-        "001": {
-          title: "001 — The first decision",
-          lines: [
-            "A threshold you crossed without witnesses.",
-            "Materials and form remain undisclosed.",
-            "Early access unlocks the full record."
-          ]
-        },
-        "002": {
-          title: "002 — A vow, not a trend",
-          lines: [
-            "Not designed for a season.",
-            "Designed for what stays.",
-            "Early access unlocks private previews."
-          ]
-        },
-        "003": {
-          title: "003 — What came after",
-          lines: [
-            "A piece that marks a before-and-after.",
-            "Shown only in fragments.",
-            "Request access to enter."
-          ]
-        }
-      };
-
-      function open(id) {
-        const c = copy[id] || { title: "Peek", lines: ["Early access unlocks the archive."] };
-        body.innerHTML = `
-          <div class="peek-title">${c.title}</div>
-          <div class="peek-lines">
-            ${c.lines.map(x => `<p>${x}</p>`).join("")}
-          </div>
-          <div class="peek-hint">PASSAGE releases quietly — to those who request entry.</div>
-        `;
-        modal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("no-scroll");
-      }
-
-      function close() {
-        modal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("no-scroll");
-      }
-
-      document.querySelectorAll("button.peek").forEach((btn) => {
-        btn.addEventListener("click", () => open(btn.getAttribute("data-peek")));
+    // Email forms (placeholder success UI)
+    function wireForm(id){
+      const form = document.getElementById(id);
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const btn = this.querySelector("button");
+        btn.disabled = true;
+        const old = btn.textContent;
+        btn.textContent = "Requested ✓";
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = old;
+          this.reset();
+        }, 1500);
       });
-
-      modal.addEventListener("click", (e) => {
-        if (e.target && e.target.getAttribute("data-close")) close();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") close();
-      });
-    })();
-
-    // Early access form (placeholder success UI; connect later)
-    document.getElementById("earlyAccessForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      const btn = this.querySelector("button");
-      btn.textContent = "Requested ✓";
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = "Request access";
-        btn.disabled = false;
-        this.reset();
-      }, 1700);
-    });
+    }
+    wireForm("emailForm");
+    wireForm("emailForm2");
   </script>
 </body>
 </html>
