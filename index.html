@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Passage — Jewelry for what comes after.</title>
-  <meta name="description" content="Passage — jewelry for what comes after. Released quietly. Kept permanently." />
 
   <link rel="stylesheet" href="style.css" />
 
@@ -15,127 +14,51 @@
 </head>
 
 <body>
+  <!-- NAV -->
   <header class="nav">
-    <a class="brand" href="#top" aria-label="Home">Passage</a>
-    <a class="nav-cta" href="#access">Early access</a>
+    <div class="brand">Passage</div>
+    <button class="nav-cta">Early access</button>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="chip">NYC</div>
-        <h1>Jewelry for what comes after.</h1>
-        <p class="one">Released quietly. Kept permanently.</p>
+  <!-- HERO -->
+  <main class="hero">
+    <span class="chip">NYC</span>
 
-        <form class="email" id="emailForm">
-          <input name="email" type="email" placeholder="Email address" required autocomplete="email" />
-          <button type="submit">Request access</button>
-        </form>
+    <h1>Jewelry for what comes after.</h1>
+    <p class="sub">Released quietly. Kept permanently.</p>
 
-        <p class="fine">No spam. No discounts.</p>
-      </div>
-    </section>
+    <form class="email">
+      <input type="email" placeholder="Email address" required />
+      <button type="submit">Request access</button>
+    </form>
 
-    <!-- TEASE -->
-    <section class="tease" aria-label="Archive">
-      <div class="divider"></div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="card-top">
-            <span class="num">001</span>
-            <button class="save" type="button" data-save="001">Save</button>
-          </div>
-          <div class="line">I stopped explaining myself.</div>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <span class="num">002</span>
-            <button class="save" type="button" data-save="002">Save</button>
-          </div>
-          <div class="line">A vow, not a trend.</div>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <span class="num">003</span>
-            <button class="save" type="button" data-save="003">Save</button>
-          </div>
-          <div class="line">What remained after the noise.</div>
-        </article>
-      </div>
-
-      <div class="hint">
-        Saved stays private on this device.
-      </div>
-    </section>
-
-    <!-- ACCESS (secondary capture, optional but helps) -->
-    <section id="access" class="access">
-      <div class="access-inner">
-        <h2>Early access</h2>
-        <p class="one">Private previews. Quiet releases.</p>
-
-        <form class="email compact" id="emailForm2">
-          <input name="email" type="email" placeholder="Email address" required autocomplete="email" />
-          <button type="submit">Request</button>
-        </form>
-
-        <p class="fine">You’ll only hear from us when something is released.</p>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <a href="mailto:hello@passage.nyc">hello@passage.nyc</a>
-      <span>© 2026</span>
-    </footer>
+    <p class="fine">No spam. No discounts.</p>
+    <p class="materials">Real gold. Real diamonds. Made to last.</p>
   </main>
 
-  <script>
-    // SAVE (localStorage)
-    (function () {
-      const KEY = "passage_saved";
-      const saved = new Set(JSON.parse(localStorage.getItem(KEY) || "[]"));
+  <!-- ARCHIVE TEASE -->
+  <section class="archive">
+    <div class="card">
+      <span class="num">001</span>
+      <p>I stopped explaining myself.</p>
+      <button class="save">Save</button>
+    </div>
 
-      function render(btn) {
-        const id = btn.getAttribute("data-save");
-        const isSaved = saved.has(id);
-        btn.textContent = isSaved ? "Saved" : "Save";
-        btn.classList.toggle("saved", isSaved);
-      }
+    <div class="card">
+      <span class="num">002</span>
+      <p>A vow, not a trend.</p>
+      <button class="save">Save</button>
+    </div>
 
-      document.querySelectorAll("button.save").forEach((btn) => {
-        render(btn);
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-save");
-          if (saved.has(id)) saved.delete(id);
-          else saved.add(id);
-          localStorage.setItem(KEY, JSON.stringify(Array.from(saved)));
-          render(btn);
-        });
-      });
-    })();
+    <div class="card">
+      <span class="num">003</span>
+      <p>What remained after the noise.</p>
+      <button class="save">Save</button>
+    </div>
+  </section>
 
-    // Email forms (placeholder success UI)
-    function wireForm(id){
-      const form = document.getElementById(id);
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        const btn = this.querySelector("button");
-        btn.disabled = true;
-        const old = btn.textContent;
-        btn.textContent = "Requested ✓";
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.textContent = old;
-          this.reset();
-        }, 1500);
-      });
-    }
-    wireForm("emailForm");
-    wireForm("emailForm2");
-  </script>
+  <footer class="footer">
+    © 2026 Passage
+  </footer>
 </body>
 </html>
