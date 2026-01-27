@@ -3,59 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passage — Jewelry for what comes after.</title>
+  <title>Passage — Clean diamonds, kept permanently.</title>
 
   <link rel="stylesheet" href="style.css" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <!-- NAV -->
   <header class="nav">
-    <div class="brand">Passage</div>
-    <button class="nav-cta">Early access</button>
+    <a class="brand" href="#" aria-label="Passage home">
+      Passage
+      <span class="brand-underline" aria-hidden="true"></span>
+    </a>
+
+    <div class="nav-actions">
+      <a class="nav-link" href="#archive">Archive</a>
+      <button class="nav-cta" type="button">Request access</button>
+    </div>
   </header>
 
   <!-- HERO -->
   <main class="hero">
-    <span class="chip">NYC</span>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="chip">NYC</span>
 
-    <h1>Jewelry for what comes after.</h1>
-    <p class="sub">Released quietly. Kept permanently.</p>
+        <h1>Jewelry for what comes after.</h1>
+        <p class="sub">Released quietly. Kept permanently.</p>
 
-    <form class="email">
-      <input type="email" placeholder="Email address" required />
-      <button type="submit">Request access</button>
-    </form>
+        <form class="email" action="#" method="post">
+          <input type="email" name="email" placeholder="Email address" required />
+          <button type="submit">Request access</button>
+        </form>
 
-    <p class="fine">No spam. No discounts.</p>
-    <p class="materials">Real gold. Real diamonds. Made to last.</p>
+        <p class="fine">No spam. No discounts.</p>
+        <p class="materials">Solid gold. Clean diamonds. Made to last.</p>
+      </div>
+
+      <div class="hero-media" aria-label="Passage jewelry close-up">
+        <!-- Replace this image with your macro jewelry photo -->
+        <!-- Put your file at: /assets/hero.jpg -->
+        <img src="assets/hero.jpg" alt="Clean diamond jewelry close-up on skin." loading="eager" />
+      </div>
+    </div>
   </main>
 
   <!-- ARCHIVE TEASE -->
-  <section class="archive">
+  <section class="archive" id="archive">
     <div class="card">
       <span class="num">001</span>
-      <p>I stopped explaining myself.</p>
-      <button class="save">Save</button>
+      <p>Not a substitute. A decision.</p>
+      <button class="save" type="button">Save</button>
     </div>
 
     <div class="card">
       <span class="num">002</span>
       <p>A vow, not a trend.</p>
-      <button class="save">Save</button>
+      <button class="save" type="button">Save</button>
     </div>
 
     <div class="card">
       <span class="num">003</span>
-      <p>What remained after the noise.</p>
-      <button class="save">Save</button>
+      <p>Nothing taken. Nothing hidden.</p>
+      <button class="save" type="button">Save</button>
     </div>
   </section>
+
+  <!-- QR (optional, great for pop-up + sharing) -->
+  <aside class="qr" aria-label="Scan to get early access">
+    <div class="qr-inner">
+      <!-- Put your QR at: /assets/qr.png -->
+      <img src="assets/qr.png" alt="Passage QR code for early access." />
+      <div class="qr-text">
+        <div class="qr-title">Scan for private access</div>
+        <div class="qr-sub">Easy to share.</div>
+      </div>
+    </div>
+  </aside>
 
   <footer class="footer">
     © 2026 Passage
