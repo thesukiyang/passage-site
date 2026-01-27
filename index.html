@@ -3,155 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passage — Clean diamonds, kept permanently.</title>
-  <meta name="description" content="Passage is a clean diamond jewelry house. Released quietly. Kept permanently. Request private access." />
+  <title>Passage — Jewelry for what comes after.</title>
 
   <link rel="stylesheet" href="style.css" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <!-- NAV -->
   <header class="nav">
-    <a class="brand" href="#" aria-label="Passage home">
-      <img class="brand-logo" src="logo.png" alt="Passage" />
-    </a>
-
-    <nav class="nav-right">
-      <a class="nav-link" href="#how">How it appears</a>
-      <a class="nav-link" href="#archive">Archive</a>
-      <a class="nav-link" href="#waitlist">Waitlist</a>
-      <a class="nav-cta" href="#waitlist">Request access</a>
-    </nav>
+    <div class="brand">Passage</div>
+    <button class="nav-cta">Early access</button>
   </header>
 
   <!-- HERO -->
-  <main class="wrap hero">
-    <div class="chip">NYC</div>
+  <main class="hero">
+    <span class="chip">NYC</span>
 
-    <h1>Not a substitute. A decision.</h1>
-    <p class="sub">Clean diamonds, released quietly. Kept permanently.</p>
+    <h1>Jewelry for what comes after.</h1>
+    <p class="sub">Released quietly. Kept permanently.</p>
 
-    <section class="panel">
-      <form class="email" id="waitlist" action="#" method="post">
-        <label class="sr-only" for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="Email address" autocomplete="email" required />
-        <button type="submit">Join quietly</button>
-      </form>
+    <form class="email">
+      <input type="email" placeholder="Email address" required />
+      <button type="submit">Request access</button>
+    </form>
 
-      <div class="meta">
-        <span>No spam.</span>
-        <span>No discounts.</span>
-        <span>Private access only.</span>
-      </div>
-
-      <div class="materials">Solid gold. Clean diamonds. Made to last.</div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- WHO -->
-    <section class="who">
-      <h2>What we are</h2>
-      <p>
-        Passage is a clean diamond jewelry house.
-        We don’t believe beauty needs to come from extraction —
-        nor that meaning needs to be loud.
-      </p>
-      <p class="muted">
-        This is not a “better value” brand. It’s a higher standard.
-      </p>
-    </section>
-
-    <!-- HOW IT APPEARS -->
-    <section class="how" id="how">
-      <h2>How Passage appears</h2>
-      <div class="how-grid">
-        <div class="how-item">
-          <div class="how-k">Released</div>
-          <div class="how-v">In small quantities. Often limited.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-k">Shown</div>
-          <div class="how-v">In quiet rooms — often upstairs.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-k">Access</div>
-          <div class="how-v">By appointment, or by introduction.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-k">Sharing</div>
-          <div class="how-v">Designed for QR. Easy to send to your boyfriend.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-k">Proof</div>
-          <div class="how-v">Real people. Real photos. Real reviews.</div>
-        </div>
-        <div class="how-item">
-          <div class="how-k">Never</div>
-          <div class="how-v">Discounted. Ever.</div>
-        </div>
-      </div>
-
-      <div class="hint">
-        If you found this page, you’re early.
-      </div>
-    </section>
-
-    <!-- ARCHIVE -->
-    <section class="archive" id="archive">
-      <div class="archive-head">
-        <h2>Archive</h2>
-        <p class="muted">Fragments of the standard we live by.</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="num">001</div>
-          <p>I stopped explaining myself.</p>
-          <button class="pill" type="button">Save</button>
-        </article>
-
-        <article class="card">
-          <div class="num">002</div>
-          <p>A vow, not a trend.</p>
-          <button class="pill" type="button">Save</button>
-        </article>
-
-        <article class="card">
-          <div class="num">003</div>
-          <p>Nothing taken. Nothing hidden.</p>
-          <button class="pill" type="button">Save</button>
-        </article>
-      </div>
-    </section>
-
-    <!-- QR CTA -->
-    <section class="qrcta">
-      <h2>Built for pop-ups</h2>
-      <p class="muted">
-        Print a card. Add a QR. Scan to join the waitlist.
-      </p>
-      <div class="qrline">
-        <span class="dot"></span>
-        <span>Scan → passage.nyc</span>
-      </div>
-    </section>
+    <p class="fine">No spam. No discounts.</p>
+    <p class="materials">Solid gold. Clean diamonds. Made to last.</p>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>© 2026 Passage</div>
-      <div class="footer-right">
-        <a class="footer-link" href="#waitlist">Request access</a>
-        <span class="sep">·</span>
-        <span class="muted">NYC</span>
-      </div>
+  <!-- ARCHIVE TEASE -->
+  <section class="archive">
+    <div class="card">
+      <span class="num">001</span>
+      <p>I stopped explaining myself.</p>
+      <button class="save">Save</button>
     </div>
+
+    <div class="card">
+      <span class="num">002</span>
+      <p>A vow, not a trend.</p>
+      <button class="save">Save</button>
+    </div>
+
+    <div class="card">
+      <span class="num">003</span>
+      <p>What remained after the noise.</p>
+      <button class="save">Save</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Passage
   </footer>
 </body>
 </html>
