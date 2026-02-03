@@ -1,64 +1,861 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Passage — Jewelry for what comes after.</title>
-
-  <link rel="stylesheet" href="style.css" />
-
+  <title>Passage — Not your wedding jewelry.</title>
+  <meta name="description" content="Lab-grown diamond jewelry for life's other chapters. Divorce. Promotion. Recovery. Reinvention. Made in NYC." />
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --bg-warm: #f5f3ef;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --muted: #6b6b6b;
+      --stone: #8a8a8a;
+      --accent: #2d2d2d;
+      --card: #ffffff;
+      --border: rgba(26, 26, 26, 0.08);
+      --border-strong: rgba(26, 26, 26, 0.15);
+      --gold: #b8a179;
+      --gold-soft: rgba(184, 161, 121, 0.12);
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      background: rgba(250, 249, 247, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #1a27d9;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      padding: 10px 20px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: all 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184, 161, 121, 0.06) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(184, 161, 121, 0.04) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--gold-soft);
+      border: 1px solid rgba(184, 161, 121, 0.2);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease-out;
+    }
+
+    .hero-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      animation: fadeUp 0.8s ease-out 0.1s both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .hero-sub {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      animation: fadeUp 0.8s ease-out 0.3s both;
+    }
+
+    .hero-form input {
+      width: 280px;
+      padding: 16px 20px;
+      border: 1px solid var(--border-strong);
+      background: var(--card);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .hero-form input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .hero-form input::placeholder {
+      color: var(--stone);
+    }
+
+    .hero-form button {
+      padding: 16px 32px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-size: 13px;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .hero-form button:hover {
+      background: var(--ink-soft);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--stone);
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--stone);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 0.8s ease-out 0.6s both;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--stone), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ═══════════════════════════════════════
+       NOT SECTION
+    ═══════════════════════════════════════ */
+    .not-section {
+      padding: 120px 24px;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .not-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .not-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 24px;
+    }
+
+    .not-list {
+      list-style: none;
+    }
+
+    .not-list li {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--stone);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      text-decoration: line-through;
+      text-decoration-color: rgba(184, 161, 121, 0.5);
+    }
+
+    .not-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .for-content h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .for-content h2 em {
+      font-style: italic;
+    }
+
+    .for-list {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .for-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .for-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       CHAPTERS / ARCHIVE
+    ═══════════════════════════════════════ */
+    .chapters {
+      padding: 120px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .chapters-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .chapters-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 16px;
+    }
+
+    .chapters-header h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 36px;
+      font-weight: 400;
+    }
+
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .chapter-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .chapter-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(26, 26, 26, 0.06);
+    }
+
+    .chapter-num {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .chapter-visual {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chapter-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .chapter-card:hover .chapter-visual img {
+      transform: scale(1.03);
+    }
+
+    /* Placeholder style when no image */
+    .chapter-visual:not(:has(img))::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .chapter-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .chapter-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .chapter-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .chapter-card:hover .chapter-action {
+      gap: 12px;
+    }
+
+    .chapter-action::after {
+      content: "→";
+    }
+
+    /* ═══════════════════════════════════════
+       MATERIALS
+    ═══════════════════════════════════════ */
+    .materials {
+      padding: 120px 24px;
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .materials-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .materials-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .materials h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 48px;
+    }
+
+    .materials h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      text-align: left;
+      padding-top: 48px;
+      border-top: 1px solid rgba(250, 249, 247, 0.1);
+    }
+
+    .material-item h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .material-item p {
+      font-size: 14px;
+      color: rgba(250, 249, 247, 0.6);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER CTA
+    ═══════════════════════════════════════ */
+    .footer-cta {
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-cta::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 60px;
+      background: var(--border-strong);
+    }
+
+    .footer-cta h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.2;
+    }
+
+    .footer-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-form input {
+      width: 280px;
+      padding: 16px 20px;
+      border: 1px solid var(--border-strong);
+      background: var(--card);
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .footer-form input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .footer-form button {
+      padding: 16px 32px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      font-size: 13px;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .footer-form button:hover {
+      background: var(--ink-soft);
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #1a27d9;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--stone);
+    }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scaleY(0.8);
+      }
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .not-content {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .chapters-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .materials-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .hero-form input {
+        width: 100%;
+      }
+
+      .hero-form button {
+        width: 100%;
+      }
+
+      .hero-scroll {
+        display: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
 <body>
+
   <!-- NAV -->
   <header class="nav">
     <div class="brand">Passage</div>
-    <button class="nav-cta">Early access</button>
+    <nav class="nav-links">
+      <a href="#chapters" class="nav-link">Collections</a>
+      <a href="#materials" class="nav-link">Materials</a>
+      <button class="nav-cta">Early Access</button>
+    </nav>
   </header>
 
   <!-- HERO -->
-  <main class="hero">
-    <span class="chip">NYC</span>
-
-    <h1>Jewelry for what comes after.</h1>
-    <p class="sub">Released quietly. Kept permanently.</p>
-
-    <form class="email">
-      <input type="email" placeholder="Email address" required />
-      <button type="submit">Request access</button>
-    </form>
-
-    <p class="fine">No spam. No discounts.</p>
-    <p class="materials">Solid gold. Clean diamonds. Made to last.</p>
-  </main>
-
-  <!-- ARCHIVE TEASE -->
-  <section class="archive">
-    <div class="card">
-      <span class="num">001</span>
-      <p>I stopped explaining myself.</p>
-      <button class="save">Save</button>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">New York City</span>
+      <h1>Not your <em>wedding</em> jewelry.</h1>
+      <p class="hero-sub">Jewelry for what comes after.</p>
+      <form class="hero-form">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Request Access</button>
+      </form>
+      <p class="hero-note">No spam. No discounts. Just early access to new chapters.</p>
     </div>
-
-    <div class="card">
-      <span class="num">002</span>
-      <p>A vow, not a trend.</p>
-      <button class="save">Save</button>
-    </div>
-
-    <div class="card">
-      <span class="num">003</span>
-      <p>What remained after the noise.</p>
-      <button class="save">Save</button>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
+  <!-- NOT / FOR -->
+  <section class="not-section">
+    <div class="not-content">
+      <div class="not-side">
+        <p class="not-label">Not for</p>
+        <ul class="not-list">
+          <li>The proposal</li>
+          <li>The anniversary</li>
+          <li>The apology</li>
+        </ul>
+      </div>
+      <div class="for-content">
+        <h2>For the chapters <em>no one celebrates</em>—but everyone remembers.</h2>
+        <ul class="for-list">
+          <li>The day you signed the papers and felt lighter.</li>
+          <li>The promotion you earned after being overlooked.</li>
+          <li>The year you finally stopped explaining yourself.</li>
+          <li>The moment you chose yourself.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTERS -->
+  <section class="chapters" id="chapters">
+    <div class="chapters-header">
+      <p class="chapters-label">The Archive</p>
+      <h2>Three collections. Three chapters.</h2>
+    </div>
+    <div class="chapters-grid">
+      <article class="chapter-card">
+        <span class="chapter-num">001</span>
+        <div class="chapter-visual">
+          <img src="images/collection-001.jpg" alt="Severance Collection" />
+        </div>
+        <h3 class="chapter-title">Severance</h3>
+        <p class="chapter-desc">Clean breaks. New starts.</p>
+        <a href="#" class="chapter-action">Notify me</a>
+      </article>
+      <article class="chapter-card">
+        <span class="chapter-num">002</span>
+        <div class="chapter-visual">
+          <img src="images/collection-002.jpg" alt="Earned Collection" />
+        </div>
+        <h3 class="chapter-title">Earned</h3>
+        <p class="chapter-desc">No one gave this to you.</p>
+        <a href="#" class="chapter-action">Notify me</a>
+      </article>
+      <article class="chapter-card">
+        <span class="chapter-num">003</span>
+        <div class="chapter-visual">
+          <img src="images/collection-003.jpg" alt="Still Here Collection" />
+        </div>
+        <h3 class="chapter-title">Still Here</h3>
+        <p class="chapter-desc">You made it through.</p>
+        <a href="#" class="chapter-action">Notify me</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="materials" id="materials">
+    <div class="materials-inner">
+      <p class="materials-label">What we're made of</p>
+      <h2>Solid gold. <em>Clean</em> diamonds.<br>Made to last longer than the occasion.</h2>
+      <div class="materials-grid">
+        <div class="material-item">
+          <h3>14K & 18K Solid Gold</h3>
+          <p>No plating. No vermeil. Gold all the way through—because permanence matters.</p>
+        </div>
+        <div class="material-item">
+          <h3>Clean Diamonds</h3>
+          <p>Lab-grown. Chemically identical. Optically identical. Just without the history you didn't ask for.</p>
+        </div>
+        <div class="material-item">
+          <h3>NYC Made</h3>
+          <p>Designed and crafted in New York City's diamond district. Local hands, lasting work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="footer-cta">
+    <h2>Ready to mark your own chapter?</h2>
+    <form class="footer-form">
+      <input type="email" placeholder="Your email" required />
+      <button type="submit">Get Early Access</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
-    © 2026 Passage
+    <div class="footer-brand">Passage</div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Materials</a>
+      <a href="#">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+    <span class="footer-copy">© 2026 Passage. New York City.</span>
   </footer>
+
 </body>
 </html>
