@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deployment Preview — Passage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "DM Sans", -apple-system, sans-serif;
+      background: #1a1a1a;
+      color: #faf9f7;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .preview-container {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      height: 100vh;
+    }
+
+    /* Left Panel - Controls */
+    .control-panel {
+      background: #242424;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .panel-header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .panel-header p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .status-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .status-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .status-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .status-value {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .status-ready {
+      color: #4ade80;
+    }
+
+    .status-pending {
+      color: #fbbf24;
+    }
+
+    .file-list {
+      list-style: none;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .file-item:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .file-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .file-icon.html { background: #f97316; color: white; }
+    .file-icon.css { background: #3b82f6; color: white; }
+    .file-icon.img { background: #8b5cf6; color: white; }
+
+    .file-name {
+      flex: 1;
+    }
+
+    .file-size {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .panel-footer {
+      padding: 20px 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .deploy-btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: #4ade80;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .deploy-btn:hover {
+      background: #22c55e;
+      transform: translateY(-1px);
+    }
+
+    .deploy-note {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 12px;
+    }
+
+    /* Right Panel - Preview */
+    .preview-panel {
+      display: flex;
+      flex-direction: column;
+      background: #0d0d0d;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #1a1a1a;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .preview-tabs {
+      display: flex;
+      gap: 4px;
+    }
+
+    .preview-tab {
+      padding: 8px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .preview-tab:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .preview-tab.active {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .preview-url {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .preview-url-icon {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+    }
+
+    .device-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .device-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .device-btn:hover, .device-btn.active {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .preview-frame-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .preview-frame-wrapper {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .preview-frame-wrapper.tablet {
+      width: 768px;
+      max-width: 100%;
+    }
+
+    .preview-frame-wrapper.mobile {
+      width: 375px;
+      max-width: 100%;
+    }
+
+    .preview-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Refresh animation */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .refresh-btn {
+      padding: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .refresh-btn:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .refresh-btn.spinning svg {
+      animation: spin 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="preview-container">
+    <!-- Left Panel - Controls -->
+    <aside class="control-panel">
+      <div class="panel-header">
+        <h1>Deployment Preview</h1>
+        <p>Review changes before going live</p>
+      </div>
+
+      <div class="panel-content">
+        <div class="section">
+          <h2 class="section-title">Status</h2>
+          <div class="status-card">
+            <div class="status-row">
+              <span class="status-label">Build</span>
+              <span class="status-value status-ready">Ready</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">Branch</span>
+              <span class="status-value">main</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">Last update</span>
+              <span class="status-value">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Files</h2>
+          <ul class="file-list">
+            <li class="file-item" onclick="loadPreview('index.html')">
+              <span class="file-icon html">HTML</span>
+              <span class="file-name">index.html</span>
+              <span class="file-size">22 KB</span>
+            </li>
+            <li class="file-item" onclick="loadPreview('style.css')">
+              <span class="file-icon css">CSS</span>
+              <span class="file-name">style.css</span>
+              <span class="file-size">17 KB</span>
+            </li>
+            <li class="file-item">
+              <span class="file-icon img">IMG</span>
+              <span class="file-name">assets/</span>
+              <span class="file-size">2 files</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Changes</h2>
+          <div class="status-card">
+            <div class="status-row">
+              <span class="status-label">Modified files</span>
+              <span class="status-value">2</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">Additions</span>
+              <span class="status-value status-ready">+48</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">Deletions</span>
+              <span class="status-value" style="color: #f87171;">-12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="deploy-btn" onclick="deploy()">Deploy to Production</button>
+        <p class="deploy-note">This will publish changes to passage.com</p>
+      </div>
+    </aside>
+
+    <!-- Right Panel - Preview -->
+    <main class="preview-panel">
+      <div class="preview-header">
+        <div class="preview-tabs">
+          <button class="preview-tab active" onclick="setTab(this, 'preview')">Preview</button>
+          <button class="preview-tab" onclick="setTab(this, 'code')">Source</button>
+        </div>
+
+        <div class="preview-url">
+          <span class="preview-url-icon"></span>
+          preview.passage.com
+        </div>
+
+        <div class="device-controls">
+          <button class="device-btn active" onclick="setDevice('desktop')" id="btn-desktop">Desktop</button>
+          <button class="device-btn" onclick="setDevice('tablet')" id="btn-tablet">Tablet</button>
+          <button class="device-btn" onclick="setDevice('mobile')" id="btn-mobile">Mobile</button>
+          <button class="refresh-btn" onclick="refreshPreview()" id="refresh-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/>
+              <path d="M21 3v5h-5"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="preview-frame-container">
+        <div class="preview-frame-wrapper" id="frame-wrapper">
+          <iframe src="index.html" class="preview-frame" id="preview-frame"></iframe>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function setDevice(device) {
+      const wrapper = document.getElementById('frame-wrapper');
+      const buttons = document.querySelectorAll('.device-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + device).classList.add('active');
+
+      wrapper.className = 'preview-frame-wrapper';
+      if (device !== 'desktop') {
+        wrapper.classList.add(device);
+      }
+    }
+
+    function setTab(btn, tab) {
+      document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      // For now just show preview, could add source view later
+    }
+
+    function refreshPreview() {
+      const btn = document.getElementById('refresh-btn');
+      const frame = document.getElementById('preview-frame');
+
+      btn.classList.add('spinning');
+      frame.src = frame.src;
+
+      setTimeout(() => {
+        btn.classList.remove('spinning');
+      }, 1000);
+    }
+
+    function loadPreview(file) {
+      const frame = document.getElementById('preview-frame');
+      if (file === 'index.html') {
+        frame.src = 'index.html';
+      }
+    }
+
+    function deploy() {
+      const btn = document.querySelector('.deploy-btn');
+      btn.textContent = 'Deploying...';
+      btn.style.background = '#fbbf24';
+
+      setTimeout(() => {
+        btn.textContent = 'Deployed!';
+        btn.style.background = '#4ade80';
+
+        setTimeout(() => {
+          btn.textContent = 'Deploy to Production';
+        }, 2000);
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
