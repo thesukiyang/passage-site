@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>It's yours — Passage</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --ink: #1a1a1a;
+      --ink-soft: #3d3d3d;
+      --muted: #6b6b6b;
+      --gold: #b8a179;
+      --border: rgba(26, 26, 26, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      font-family: "DM Sans", -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      padding: 24px 32px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    header a { color: inherit; text-decoration: none; }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px 80px;
+    }
+
+    .mark {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: rise 0.9s ease forwards;
+    }
+
+    .mark svg { width: 22px; height: 22px; }
+
+    .mark path {
+      stroke: var(--gold);
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+      animation: draw 0.7s 0.5s ease forwards;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: rise 0.9s 0.2s ease forwards;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(44px, 9vw, 76px);
+      line-height: 1.05;
+      opacity: 0;
+      animation: rise 0.9s 0.35s ease forwards;
+    }
+
+    h1 em { font-style: italic; }
+
+    .lede {
+      margin-top: 24px;
+      max-width: 420px;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+      opacity: 0;
+      animation: rise 0.9s 0.5s ease forwards;
+    }
+
+    .steps {
+      list-style: none;
+      margin-top: 48px;
+      width: min(420px, 100%);
+      border-top: 1px solid var(--border);
+      text-align: left;
+      opacity: 0;
+      animation: rise 0.9s 0.65s ease forwards;
+    }
+
+    .steps li {
+      display: flex;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .steps li span {
+      flex: none;
+      width: 24px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      padding-top: 2px;
+    }
+
+    .back {
+      margin-top: 48px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 4px;
+      opacity: 0;
+      animation: rise 0.9s 0.8s ease forwards;
+    }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mark, .tag, h1, .lede, .steps, .back { animation: none; opacity: 1; }
+      .mark path { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header><a href="/">Passage</a></header>
+
+  <main>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <p class="tag">Order confirmed</p>
+    <h1>It's <em>yours.</em></h1>
+    <p class="lede">You marked the chapter. Now it has something to hold onto.</p>
+
+    <ol class="steps">
+      <li><span>01</span>Your receipt is on its way to your inbox.</li>
+      <li><span>02</span>We'll be in touch about delivery.</li>
+      <li><span>03</span>Questions? Our contact is on your receipt.</li>
+    </ol>
+
+    <a class="back" href="/">Back to Passage →</a>
+  </main>
+
+  <footer>© 2026 Passage. New York City.</footer>
+</body>
+</html>

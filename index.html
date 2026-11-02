@@ -655,6 +655,225 @@
       color: var(--ink);
     }
 
+    .chapter-buy-btn.is-loading,
+    .drawer-buy.is-loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* ═══════════════════════════════════════
+       PRODUCT DRAWER
+    ═══════════════════════════════════════ */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(26, 26, 26, 0.35);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 201;
+      width: min(520px, 100%);
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: -24px 0 60px rgba(26, 26, 26, 0.12);
+      visibility: hidden;
+    }
+
+    body.drawer-open { overflow: hidden; }
+    body.drawer-open .drawer-backdrop { opacity: 1; pointer-events: auto; }
+    body.drawer-open .drawer { transform: none; visibility: visible; }
+
+    .drawer-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      background: rgba(250, 248, 244, 0.9);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .drawer-close:hover { border-color: var(--gold); }
+
+    .drawer-scroll {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .drawer-visual {
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .drawer-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 1.2s ease;
+    }
+
+    body.drawer-open .drawer-visual img { transform: none; }
+
+    .drawer-body { padding: 36px 40px 24px; }
+
+    .drawer-num {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+
+    .drawer-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.1;
+      margin: 10px 0 8px;
+    }
+
+    .drawer-desc {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--ink-soft);
+    }
+
+    .drawer-story {
+      margin-top: 24px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .drawer-story:empty { display: none; }
+
+    .drawer-specs {
+      list-style: none;
+      margin-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .drawer-specs li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .drawer-specs li span:first-child {
+      color: var(--stone);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .drawer-footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 40px calc(20px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .drawer-price {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 26px;
+      white-space: nowrap;
+    }
+
+    .drawer-price:empty { display: none; }
+
+    .drawer-buy {
+      flex: 1;
+      display: block;
+      padding: 18px 24px;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .drawer-buy:hover { background: transparent; color: var(--ink); }
+
+    .drawer-buy.is-notify {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .drawer-buy.is-notify:hover { background: var(--ink); color: var(--bg); }
+
+    .drawer-note {
+      padding: 0 40px 4px;
+      font-size: 11px;
+      color: var(--stone);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .drawer {
+        top: auto;
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+        box-shadow: 0 -24px 60px rgba(26, 26, 26, 0.12);
+      }
+
+      .drawer-visual { aspect-ratio: 4 / 3; }
+      .drawer-body { padding: 28px 24px 16px; }
+      .drawer-title { font-size: 34px; }
+      .drawer-footer { padding: 16px 24px calc(16px + env(safe-area-inset-bottom)); }
+      .drawer-note { padding: 0 24px 4px; }
+
+      .drawer::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(26, 26, 26, 0.25);
+        z-index: 3;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .drawer, .drawer-backdrop, .drawer-visual img { transition: none; }
+    }
+
     /* ═══════════════════════════════════════
        MATERIALS
     ═══════════════════════════════════════ */
@@ -1257,24 +1476,155 @@
     <span class="footer-copy">© 2026 Passage. New York City.</span>
   </footer>
 
+  <!-- PRODUCT DRAWER -->
+  <div class="drawer-backdrop" data-close></div>
+  <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <button class="drawer-close" type="button" aria-label="Close" data-close>&times;</button>
+    <div class="drawer-scroll">
+      <div class="drawer-visual"><img alt="" /></div>
+      <div class="drawer-body">
+        <span class="drawer-num"></span>
+        <h3 class="drawer-title" id="drawer-title"></h3>
+        <p class="drawer-desc"></p>
+        <p class="drawer-story"></p>
+        <ul class="drawer-specs">
+          <li><span>Metal</span><span>14K or 18K solid gold</span></li>
+          <li><span>Stones</span><span>Lab-grown diamonds</span></li>
+          <li><span>Made</span><span>New York City</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <span class="drawer-price"></span>
+      <a class="drawer-buy" href="#">Buy now</a>
+    </div>
+    <p class="drawer-note"></p>
+  </aside>
+
   <script>
     /* ─────────────────────────────────────────────
        SHOP — fill in a price + Stripe Payment Link
        for any collection to turn on its Buy button.
        Leave link empty and the card stays "Notify me".
+       story is optional: a line or two for the detail panel.
     ───────────────────────────────────────────── */
     const SHOP = {
-      "001": { price: "", link: "" },  // Severance
-      "002": { price: "", link: "" },  // Earned
-      "003": { price: "", link: "" },  // Still Here
+      "001": { price: "", link: "", story: "" },  // Severance
+      "002": { price: "", link: "", story: "" },  // Earned
+      "003": { price: "", link: "", story: "" },  // Still Here
     };
+
+    const CHECKOUT_NOTE = "Secure checkout by Stripe";
+
+    const body = document.body;
+    const drawer = document.querySelector(".drawer");
+    const buyBtn = drawer.querySelector(".drawer-buy");
+    let lastFocus = null;
+
+    function goToWaitlist() {
+      closeDrawer();
+      const form = document.querySelector(".waitlist");
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => form.querySelector("input").focus({ preventScroll: true }), 600);
+    }
+
+    function startCheckout(btn, link) {
+      btn.classList.add("is-loading");
+      btn.textContent = "Opening checkout…";
+      window.location.href = link;
+    }
+
+    function openDrawer(card) {
+      const id = card.dataset.collection;
+      const item = SHOP[id] || {};
+      const img = card.querySelector(".chapter-visual img");
+
+      drawer.querySelector(".drawer-visual img").src = img.src;
+      drawer.querySelector(".drawer-visual img").alt = img.alt;
+      drawer.querySelector(".drawer-num").textContent = id;
+      drawer.querySelector(".drawer-title").textContent = card.querySelector(".chapter-title").textContent;
+      drawer.querySelector(".drawer-desc").textContent = card.querySelector(".chapter-desc").textContent;
+      drawer.querySelector(".drawer-story").textContent = item.story || "";
+
+      const buyable = Boolean(item.link);
+      drawer.querySelector(".drawer-price").textContent = buyable ? item.price : "";
+      buyBtn.textContent = buyable ? "Buy now" : "Notify me";
+      buyBtn.href = buyable ? item.link : "#";
+      buyBtn.classList.toggle("is-notify", !buyable);
+      buyBtn.classList.remove("is-loading");
+      buyBtn.onclick = (e) => {
+        e.preventDefault();
+        buyable ? startCheckout(buyBtn, item.link) : goToWaitlist();
+      };
+      drawer.querySelector(".drawer-note").textContent = buyable ? CHECKOUT_NOTE : "We'll write when it's ready.";
+
+      lastFocus = document.activeElement;
+      drawer.querySelector(".drawer-scroll").scrollTop = 0;
+      drawer.setAttribute("aria-hidden", "false");
+      body.classList.add("drawer-open");
+      drawer.querySelector(".drawer-close").focus({ preventScroll: true });
+    }
+
+    function closeDrawer() {
+      if (!body.classList.contains("drawer-open")) return;
+      body.classList.remove("drawer-open");
+      drawer.setAttribute("aria-hidden", "true");
+      if (lastFocus) lastFocus.focus({ preventScroll: true });
+    }
 
     document.querySelectorAll(".chapter-card[data-collection]").forEach((card) => {
       const item = SHOP[card.dataset.collection];
-      if (!item || !item.link) return;
-      card.querySelector(".chapter-price").textContent = item.price;
-      card.querySelector(".chapter-buy-btn").href = item.link;
-      card.classList.add("is-buyable");
+      const cardBuy = card.querySelector(".chapter-buy-btn");
+
+      if (item && item.link) {
+        card.querySelector(".chapter-price").textContent = item.price;
+        cardBuy.href = item.link;
+        card.classList.add("is-buyable");
+      }
+
+      card.setAttribute("tabindex", "0");
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".chapter-buy-btn")) {
+          e.preventDefault();
+          startCheckout(cardBuy, item.link);
+          return;
+        }
+        if (e.target.closest(".chapter-action")) {
+          e.preventDefault();
+          goToWaitlist();
+          return;
+        }
+        openDrawer(card);
+      });
+      card.addEventListener("keydown", (e) => {
+        if ((e.key === "Enter" || e.key === " ") && e.target === card) {
+          e.preventDefault();
+          openDrawer(card);
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeDrawer));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+
+    // Keep keyboard focus inside the open drawer
+    drawer.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusables = drawer.querySelectorAll("button, a[href]");
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    // Early Access in the nav → the waitlist form
+    document.querySelector(".nav-cta").addEventListener("click", goToWaitlist);
+
+    // Coming back from Stripe with the back button: reset button states
+    window.addEventListener("pageshow", () => {
+      document.querySelectorAll(".is-loading").forEach((b) => {
+        b.classList.remove("is-loading");
+        b.textContent = "Buy now";
+      });
     });
   </script>
 
