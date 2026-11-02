@@ -615,6 +615,46 @@
       content: "→";
     }
 
+    /* Buy row — only shown once a collection has a checkout link */
+    .chapter-buy {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .chapter-card.is-buyable .chapter-buy { display: flex; }
+    .chapter-card.is-buyable .chapter-action { display: none; }
+
+    .chapter-price {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    .chapter-buy-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      padding: 12px 22px;
+      background: var(--ink);
+      color: var(--bg);
+      font-family: "DM Sans", sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .chapter-buy-btn:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
     /* ═══════════════════════════════════════
        MATERIALS
     ═══════════════════════════════════════ */
@@ -1123,7 +1163,7 @@
       <h2>Three collections. Three chapters.</h2>
     </div>
     <div class="chapters-grid">
-      <article class="chapter-card">
+      <article class="chapter-card" data-collection="001">
         <span class="chapter-num">001</span>
         <div class="chapter-visual">
           <img src="images/collection-001.jpg" alt="Severance Collection" />
@@ -1131,8 +1171,12 @@
         <h3 class="chapter-title">Severance</h3>
         <p class="chapter-desc">Clean breaks. New starts.</p>
         <a href="#" class="chapter-action">Notify me</a>
+        <div class="chapter-buy">
+          <span class="chapter-price"></span>
+          <a class="chapter-buy-btn" href="#">Buy now</a>
+        </div>
       </article>
-      <article class="chapter-card">
+      <article class="chapter-card" data-collection="002">
         <span class="chapter-num">002</span>
         <div class="chapter-visual">
           <img src="images/collection-002.jpg" alt="Earned Collection" />
@@ -1140,8 +1184,12 @@
         <h3 class="chapter-title">Earned</h3>
         <p class="chapter-desc">No one gave this to you.</p>
         <a href="#" class="chapter-action">Notify me</a>
+        <div class="chapter-buy">
+          <span class="chapter-price"></span>
+          <a class="chapter-buy-btn" href="#">Buy now</a>
+        </div>
       </article>
-      <article class="chapter-card">
+      <article class="chapter-card" data-collection="003">
         <span class="chapter-num">003</span>
         <div class="chapter-visual">
           <img src="images/collection-003.jpg" alt="Still Here Collection" />
@@ -1149,6 +1197,10 @@
         <h3 class="chapter-title">Still Here</h3>
         <p class="chapter-desc">You made it through.</p>
         <a href="#" class="chapter-action">Notify me</a>
+        <div class="chapter-buy">
+          <span class="chapter-price"></span>
+          <a class="chapter-buy-btn" href="#">Buy now</a>
+        </div>
       </article>
     </div>
   </section>
@@ -1204,6 +1256,27 @@
     </div>
     <span class="footer-copy">© 2026 Passage. New York City.</span>
   </footer>
+
+  <script>
+    /* ─────────────────────────────────────────────
+       SHOP — fill in a price + Stripe Payment Link
+       for any collection to turn on its Buy button.
+       Leave link empty and the card stays "Notify me".
+    ───────────────────────────────────────────── */
+    const SHOP = {
+      "001": { price: "", link: "" },  // Severance
+      "002": { price: "", link: "" },  // Earned
+      "003": { price: "", link: "" },  // Still Here
+    };
+
+    document.querySelectorAll(".chapter-card[data-collection]").forEach((card) => {
+      const item = SHOP[card.dataset.collection];
+      if (!item || !item.link) return;
+      card.querySelector(".chapter-price").textContent = item.price;
+      card.querySelector(".chapter-buy-btn").href = item.link;
+      card.classList.add("is-buyable");
+    });
+  </script>
 
 </body>
 </html>
