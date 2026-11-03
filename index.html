@@ -1507,14 +1507,29 @@
        for any collection to turn on its Buy button.
        Leave link empty and the card stays "Notify me".
        story is optional: a line or two for the detail panel.
+       testLink: a Stripe test-mode link. It only shows on
+       passage.nyc/?test so real visitors never see it.
     ───────────────────────────────────────────── */
     const SHOP = {
-      "001": { price: "", link: "", story: "" },  // Severance
-      "002": { price: "", link: "", story: "" },  // Earned
-      "003": { price: "", link: "", story: "" },  // Still Here
+      "001": { price: "$1,499", link: "", testLink: "https://buy.stripe.com/test_aFafZigjjasd5sA43r3wQ00", story: "" },  // Severance
+      "002": { price: "", link: "", testLink: "", story: "" },  // Earned
+      "003": { price: "", link: "", testLink: "", story: "" },  // Still Here
     };
 
     const CHECKOUT_NOTE = "Secure checkout by Stripe";
+    const TEST_MODE = new URLSearchParams(window.location.search).has("test");
+    const linkFor = (item) => (item ? (TEST_MODE && item.testLink) || item.link || "" : "");
+
+    if (TEST_MODE) {
+      const badge = document.createElement("div");
+      badge.textContent = "Test mode — use card 4242 4242 4242 4242";
+      badge.style.cssText = "position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:300;padding:8px 14px;background:#b8a179;color:#fff;font:500 12px 'DM Sans',sans-serif;letter-spacing:.04em;border-radius:999px;white-space:nowrap";
+      badge.className = "test-badge";
+      document.body.appendChild(badge);
+      const hideBadge = document.createElement("style");
+      hideBadge.textContent = "body.drawer-open .test-badge{display:none}";
+      document.head.appendChild(hideBadge);
+    }
 
     const body = document.body;
     const drawer = document.querySelector(".drawer");
@@ -1546,15 +1561,16 @@
       drawer.querySelector(".drawer-desc").textContent = card.querySelector(".chapter-desc").textContent;
       drawer.querySelector(".drawer-story").textContent = item.story || "";
 
-      const buyable = Boolean(item.link);
+      const link = linkFor(item);
+      const buyable = Boolean(link);
       drawer.querySelector(".drawer-price").textContent = buyable ? item.price : "";
       buyBtn.textContent = buyable ? "Buy now" : "Notify me";
-      buyBtn.href = buyable ? item.link : "#";
+      buyBtn.href = buyable ? link : "#";
       buyBtn.classList.toggle("is-notify", !buyable);
       buyBtn.classList.remove("is-loading");
       buyBtn.onclick = (e) => {
         e.preventDefault();
-        buyable ? startCheckout(buyBtn, item.link) : goToWaitlist();
+        buyable ? startCheckout(buyBtn, link) : goToWaitlist();
       };
       drawer.querySelector(".drawer-note").textContent = buyable ? CHECKOUT_NOTE : "We'll write when it's ready.";
 
@@ -1576,9 +1592,11 @@
       const item = SHOP[card.dataset.collection];
       const cardBuy = card.querySelector(".chapter-buy-btn");
 
-      if (item && item.link) {
+      const link = linkFor(item);
+
+      if (link) {
         card.querySelector(".chapter-price").textContent = item.price;
-        cardBuy.href = item.link;
+        cardBuy.href = link;
         card.classList.add("is-buyable");
       }
 
@@ -1586,7 +1604,7 @@
       card.addEventListener("click", (e) => {
         if (e.target.closest(".chapter-buy-btn")) {
           e.preventDefault();
-          startCheckout(cardBuy, item.link);
+          startCheckout(cardBuy, link);
           return;
         }
         if (e.target.closest(".chapter-action")) {
